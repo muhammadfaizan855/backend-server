@@ -1,25 +1,28 @@
 import mongoose from "mongoose";
 
 
-const userPost = new mongoose.Schema({
-    userPoster  : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : "Users",
-        required : true
-    },
+const postSchema = new mongoose.Schema({
     content : {
         type : String,
         required : true
     },
-    userLikePost : {
+    imageUrl : {
+        type : String
+    },
+    poster  : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "User",
+        required : true
+    },
+    LikePost : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "Like" 
     },
-    userComment : {
+    comment : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "Comment"
     },
-    userSharesPost : {
+    SharesPost : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "Share"
     }
@@ -28,4 +31,4 @@ const userPost = new mongoose.Schema({
     timestamps : true
 })
 
-export default ("Post" , userPost)
+export default ("Post" , postSchema)

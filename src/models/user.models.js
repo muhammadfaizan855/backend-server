@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 
+
 const userSchema = new mongoose.Schema({
     userName : {
         type : String,
@@ -21,24 +22,25 @@ const userSchema = new mongoose.Schema({
         type: String, 
         default: 'https://path_to_default_image.jpg',
     },
-    userPost : {
+    post : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "Post"
     },
-    userLikePost : {
+    LikePost : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "Like" 
     },
-    userComment : {
+    Comment : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "Comment"
     },
-    userSharesPost : {
+    SharesPost : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "Share"
     }
 
-},{
+},
+{
     timestamps : true
 })
 
@@ -46,4 +48,4 @@ const userSchema = new mongoose.Schema({
 
 
 
-export default mongoose.model("Users" , userSchema)
+export default mongoose.model("User" , userSchema)
