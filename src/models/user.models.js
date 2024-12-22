@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import bcrypt from "bcrypt"
 
 
 const userSchema = new mongoose.Schema({
@@ -20,7 +20,6 @@ const userSchema = new mongoose.Schema({
     },
     profilePic: {
         type: String, 
-        default: 'https://path_to_default_image.jpg',
     },
     post : {
         type : mongoose.Schema.Types.ObjectId,
@@ -44,6 +43,13 @@ const userSchema = new mongoose.Schema({
     timestamps : true
 })
 
+
+userSchema.pre("save", async function (next) {
+    if (!this.isModified("password")) return next();
+  
+    this.password = await bcrypt.hash(this.password, 10);
+    next();
+});
 
 
 
